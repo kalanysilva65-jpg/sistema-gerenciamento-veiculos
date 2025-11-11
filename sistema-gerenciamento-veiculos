@@ -1,0 +1,108 @@
+GerenciamentoVeiculos/
+│
+├── src/
+│   ├── Veiculo.java
+│   ├── Carro.java
+│   ├── Moto.java
+│   └── Main.java
+│
+└── README.md
+🧠 Código completo
+📄 Veiculo.java
+java
+Copiar código
+// Classe abstrata base que representa um veículo genérico
+public abstract class Veiculo {
+    public String marca;
+    public String modelo;
+    private int ano;
+
+    // Construtor
+    public Veiculo(String marca, String modelo, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    // Métodos getter e setter para o atributo privado 'ano'
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    // Método abstrato que deve ser implementado nas subclasses
+    public abstract String informacoesVeiculo();
+}
+🚗 Carro.java
+java
+Copiar código
+// Classe que representa um carro e herda de Veiculo
+public class Carro extends Veiculo {
+    public int numeroPortas;
+
+    // Construtor
+    public Carro(String marca, String modelo, int ano, int numeroPortas) {
+        super(marca, modelo, ano);
+        this.numeroPortas = numeroPortas;
+    }
+
+    // Implementação do método abstrato
+    @Override
+    public String informacoesVeiculo() {
+        return "CARRO\n" +
+               "Marca: " + marca + "\n" +
+               "Modelo: " + modelo + "\n" +
+               "Ano: " + getAno() + "\n" +
+               "Número de portas: " + numeroPortas + "\n";
+    }
+}
+🏍️ Moto.java
+java
+Copiar código
+// Classe que representa uma moto e herda de Veiculo
+public class Moto extends Veiculo {
+    private int cilindrada;
+
+    // Construtor
+    public Moto(String marca, String modelo, int ano, int cilindrada) {
+        super(marca, modelo, ano);
+        this.cilindrada = cilindrada;
+    }
+
+    // Métodos getter e setter para 'cilindrada'
+    public int getCilindrada() {
+        return cilindrada;
+    }
+
+    public void setCilindrada(int cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+
+    // Implementação do método abstrato
+    @Override
+    public String informacoesVeiculo() {
+        return "MOTO\n" +
+               "Marca: " + marca + "\n" +
+               "Modelo: " + modelo + "\n" +
+               "Ano: " + getAno() + "\n" +
+               "Cilindrada: " + cilindrada + "cc\n";
+    }
+}
+🖥️ Main.java
+java
+Copiar código
+// Classe principal para testar o sistema de gerenciamento de veículos
+public class Main {
+    public static void main(String[] args) {
+        // Instanciando objetos de Carro e Moto
+        Carro carro = new Carro("Toyota", "Corolla", 2020, 4);
+        Moto moto = new Moto("Honda", "CB 500F", 2022, 500);
+
+        // Exibindo as informações dos veículos
+        System.out.println(carro.informacoesVeiculo());
+        System.out.println(moto.informacoesVeiculo());
+    }
+}
